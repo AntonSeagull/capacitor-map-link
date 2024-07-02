@@ -1,6 +1,6 @@
 {
   "name": "capacitor-map-link",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Open the map app of the user's choice with a specific location.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -62,7 +62,9 @@
     "typescript": "~4.1.5"
   },
   "peerDependencies": {
-    "@capacitor/core": "^6.0.0"
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/action-sheet": "^6.0.1",
+    "capacitor-linking": "^0.0.2"
   },
   "prettier": "@ionic/prettier-config",
   "swiftlint": "@ionic/swiftlint-config",

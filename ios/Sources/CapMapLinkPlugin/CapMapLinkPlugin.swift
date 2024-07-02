@@ -9,5 +9,9 @@ import Capacitor
 public class CapMapLinkPlugin: CAPPlugin, CAPBridgedPlugin {
     public let identifier = "CapMapLinkPlugin"
     public let jsName = "CapMapLink"
-  
+    public let pluginMethods: [CAPPluginMethod] = [
+       
+    ]
+    private let implementation = CapMapLink()
+
 }

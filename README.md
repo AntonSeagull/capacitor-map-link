@@ -2,6 +2,38 @@
 
 Open the map app of the user's choice with a specific location.
 
+```bash
+npm install capacitor-map-link
+npx cap sync
+```
+
+## Using the showLocation Function
+
+Using the `showLocation` function will show an action sheet on iOS and an alert on Android, without any custom styling:
+
+```typescript
+import { CapMapLink } from 'capacitor-map-link';
+
+CapMapLink.showLocation({
+  latitude: 38.8976763,
+  longitude: -77.0387185,
+  sourceLatitude: -8.0870631, // optionally specify starting location for directions
+  sourceLongitude: -34.8941619, // required if sourceLatitude is specified
+  title: 'The White House', // optional
+  googleForceLatLon: false, // optionally force GoogleMaps to use the latlon for the query instead of the title
+  googlePlaceId: 'ChIJGVtI4by3t4kRr51d_Qm_x58', // optionally specify the google-place-id
+  alwaysIncludeGoogle: true, // optional, true will always add Google Maps to iOS and open in Safari, even if app is not installed (default: false)
+  dialogTitle: 'This is the dialog Title', // optional (default: 'Open in Maps')
+  dialogMessage: 'This is the amazing dialog Message', // optional (default: 'What app would you like to use?')
+  cancelText: 'This is the cancel button text', // optional (default: 'Cancel')
+  appsWhiteList: ['google-maps'], // optionally you can set which apps to show (default: will show all supported apps installed on device)
+  naverCallerName: 'com.example.myapp', // to link into Naver Map You should provide your appname which is the bundle ID in iOS and applicationId in android.
+  appTitles: { 'google-maps': 'My custom Google Maps title' }, // optionally you can override default app titles
+  app: 'uber', // optionally specify specific app to use
+  directionsMode: 'walk', // optional, accepted values are 'car', 'walk', 'public-transport' or 'bike'
+});
+```
+
 ## Adding URL Schemes to `Info.plist`
 
 To ensure your app can properly handle URL schemes, you need to add the required schemes to the `Info.plist` file of your iOS project. This allows the app to check and open URLs with these schemes.
@@ -45,6 +77,134 @@ Here is an example of how your `Info.plist` should look with the URL schemes add
     ...
 </dict>
 </plist>
+```
+
+## Adding URL Schemes to `AndroidManifest.xml`
+
+To ensure your app can properly handle URL schemes, you need to add the required schemes to the `AndroidManifest.xml` file of your Android project. This allows the app to check and open URLs with these schemes.
+
+### Example `AndroidManifest.xml`
+
+Here is an example of how your `AndroidManifest.xml` should look with the URL schemes added:
+
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.app">
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="http" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="geo" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="google.navigation" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="applemaps" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="citymapper" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="uber" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="lyft" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="transit" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="truckmap" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="waze" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="yandexnavi" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="moovit" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="yandexmaps" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="yandextaxi" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="kakaomap" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="tmap" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="mapycz" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="mapsme" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="osmand.geo" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="gett" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="nmap" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="dgis" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="lftgpas" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="petalmaps" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="com.sygic.aura" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".MainApplication"
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher">
+        ...
+    </application>
+</manifest>
 ```
 
 ## Install

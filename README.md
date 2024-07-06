@@ -3,7 +3,7 @@
 Open the map app of the user's choice with a specific location.
 
 ```bash
-npm install capacitor-map-link
+npm install capacitor-map-link @capacitor/action-sheet capacitor-linking
 npx cap sync
 ```
 
@@ -210,7 +210,7 @@ Here is an example of how your `AndroidManifest.xml` should look with the URL sc
 ## Install
 
 ```bash
-npm install capacitor-map-link
+npm install capacitor-map-link @capacitor/action-sheet capacitor-linking
 npx cap sync
 ```
 

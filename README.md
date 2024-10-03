@@ -218,10 +218,10 @@ npx cap sync
 
 <docgen-index>
 
-- [`showLocation(...)`](#showlocation)
-- [`getApps(...)`](#getapps)
-- [Interfaces](#interfaces)
-- [Type Aliases](#type-aliases)
+* [`showLocation(...)`](#showlocation)
+* [`getApps(...)`](#getapps)
+* [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
 
 </docgen-index>
 
@@ -240,7 +240,8 @@ showLocation(options: ShowLocationProps) => Promise<any>
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
----
+--------------------
+
 
 ### getApps(...)
 
@@ -254,9 +255,11 @@ getApps(options: GetAppsProps) => Promise<GetAppsResponse[]>
 
 **Returns:** <code>Promise&lt;GetAppsResponse[]&gt;</code>
 
----
+--------------------
+
 
 ### Interfaces
+
 
 #### ShowLocationProps
 
@@ -281,35 +284,38 @@ getApps(options: GetAppsProps) => Promise<GetAppsResponse[]>
 | **`naverCallerName`**     | <code>string</code>                                                                                                       |                                                                    |
 | **`directionsMode`**      | <code><a href="#directionmode">DirectionMode</a></code>                                                                   |                                                                    |
 
+
 ### Type Aliases
+
 
 #### MapId
 
 <code>'apple-maps' | 'google-maps' | 'citymapper' | 'uber' | 'lyft' | 'transit' | 'truckmap' | 'waze' | 'yandex' | 'moovit' | 'yandex-maps' | 'yandex-taxi' | 'kakaomap' | 'tmap' | 'mapycz' | 'maps-me' | 'osmand' | 'gett' | 'navermap' | 'dgis' | 'liftago' | 'petalmaps' | 'sygic'</code>
 
+
 #### Partial
 
 Make all properties in T optional
 
-<code>{
-[P in keyof T]?: T[P];
-}</code>
+<code>{ [P in keyof T]?: T[P]; }</code>
+
 
 #### Record
 
 Construct a type with a set of properties K of type T
 
-<code>{
-[P in K]: T;
-}</code>
+<code>{ [P in K]: T; }</code>
+
 
 #### DirectionMode
 
 <code>'car' | 'walk' | 'public-transport' | 'bike'</code>
 
+
 #### GetAppsResponse
 
-<code>{ id: <a href="#mapid">MapId</a>; name: string; /\*_ function to link user to map app _/ open: () =&gt; Promise&lt;string | null&gt;; }</code>
+<code>{ id: <a href="#mapid">MapId</a>; name: string; /** function to link user to map app */ open: () =&gt; Promise&lt;string | null&gt;; }</code>
+
 
 #### GetAppsProps
 

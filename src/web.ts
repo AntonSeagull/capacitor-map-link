@@ -1,3 +1,4 @@
+import { AppLauncher } from '@capacitor/app-launcher';
 import { WebPlugin } from '@capacitor/core';
 import type {
   CapMapLinkPlugin,
@@ -6,15 +7,14 @@ import type {
   ShowLocationProps,
 } from './definitions';
 
-import { MapId } from './definitions';
 import { Capacitor } from '@capacitor/core';
+import { MapId } from './definitions';
 
 import {
   ActionSheet,
   ActionSheetButton,
   ActionSheetButtonStyle,
 } from '@capacitor/action-sheet';
-import { CapLinking } from 'capacitor-linking';
 
 export class CapMapLinkWeb extends WebPlugin implements CapMapLinkPlugin {
   async showLocation({
@@ -132,9 +132,13 @@ export class CapMapLinkWeb extends WebPlugin implements CapMapLinkPlugin {
     });
 
     if (url !== '') {
-      return CapLinking.openURL({
-        url,
-      }).then(() => Promise.resolve(app));
+      AppLauncher.canOpenUrl({ url })
+        .then(() => {
+          AppLauncher.openUrl({ url }).then(() => Promise.resolve(app));
+        })
+        .catch(() => {
+          console.error(`Error opening ${app} with url: ${url}`);
+        });
     }
   }
 
@@ -368,12 +372,12 @@ export const isAppInstalled = (
     if (!(app in prefixes)) {
       return resolve(false);
     }
-    console.log('prefixes[app]', prefixes[app]);
-    CapLinking.canOpenURL({
+
+    AppLauncher.canOpenUrl({
       url: prefixes[app],
     })
       .then(result => {
-        resolve(!!result.canOpen);
+        resolve(!!result.value);
       })
       .catch(() => {
         resolve(false);
@@ -442,7 +446,6 @@ export const askAppChoice = ({
       style: ActionSheetButtonStyle.Cancel,
     });
 
-    console.log('options', options);
     const result = await ActionSheet.showActions({
       title: dialogTitle || '',
       message: dialogMessage || '',

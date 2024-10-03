@@ -14,7 +14,6 @@ def capacitor_pods
   pod 'CapacitorActionSheet', :path => '../../node_modules/@capacitor/action-sheet'
   pod 'CapacitorCamera', :path => '../../node_modules/@capacitor/camera'
   pod 'CapacitorSplashScreen', :path => '../../node_modules/@capacitor/splash-screen'
-  pod 'CapacitorLinking', :path => '../../node_modules/capacitor-linking'
   pod 'CapacitorMapLink', :path => '../../..'
 end
 

@@ -8,7 +8,7 @@ export default {
       globals: {
         '@capacitor/core': 'capacitorExports',
         '@capacitor/action-sheet': 'capacitorActionSheet',
-        'capacitor-linking': 'capacitorLinking',
+        '@capacitor/app-launcher': 'capacitorLinking',
       },
       sourcemap: true,
       inlineDynamicImports: true,
@@ -20,7 +20,11 @@ export default {
       inlineDynamicImports: true,
     },
   ],
-  external: ['@capacitor/core', '@capacitor/action-sheet', 'capacitor-linking'],
+  external: [
+    '@capacitor/core',
+    '@capacitor/action-sheet',
+    '@capacitor/app-launcher',
+  ],
   onwarn: (warning, warn) => {
     if (warning.code === 'THIS_IS_UNDEFINED') {
       return;

@@ -11,8 +11,5 @@ project(':capacitor-camera').projectDir = new File('../node_modules/@capacitor/c
 include ':capacitor-splash-screen'
 project(':capacitor-splash-screen').projectDir = new File('../node_modules/@capacitor/splash-screen/android')
 
-include ':capacitor-linking'
-project(':capacitor-linking').projectDir = new File('../node_modules/capacitor-linking/android')
-
 include ':capacitor-map-link'
 project(':capacitor-map-link').projectDir = new File('../../android')

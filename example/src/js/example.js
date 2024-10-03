@@ -1,8 +1,5 @@
-import { CapMapLink } from 'capacitor-map-link';
 import { ActionSheet, ActionSheetButtonStyle } from '@capacitor/action-sheet';
-import { CapLinking } from 'capacitor-linking';
-
-window.CapLinking = CapLinking;
+import { CapMapLink } from 'capacitor-map-link';
 
 window.getApps = () => {
   CapMapLink.getApps({

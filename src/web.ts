@@ -1,20 +1,21 @@
+import {
+  ActionSheet,
+  ActionSheetButton,
+  ActionSheetButtonStyle,
+} from '@capacitor/action-sheet';
 import { AppLauncher } from '@capacitor/app-launcher';
-import { WebPlugin } from '@capacitor/core';
+import {
+  Capacitor,
+  WebPlugin,
+} from '@capacitor/core';
+
 import type {
   CapMapLinkPlugin,
   GetAppsProps,
   GetAppsResponse,
   ShowLocationProps,
 } from './definitions';
-
-import { Capacitor } from '@capacitor/core';
 import { MapId } from './definitions';
-
-import {
-  ActionSheet,
-  ActionSheetButton,
-  ActionSheetButtonStyle,
-} from '@capacitor/action-sheet';
 
 export class CapMapLinkWeb extends WebPlugin implements CapMapLinkPlugin {
   async showLocation({
@@ -185,6 +186,22 @@ export class CapMapLinkWeb extends WebPlugin implements CapMapLinkPlugin {
 
 export const isIOS: boolean = Capacitor.getPlatform() === 'ios';
 
+const androidPackageNames: Partial<Record<MapId, string>> = {
+  'yandex-maps': 'ru.yandex.yandexmaps',
+  'yandex': 'ru.yandex.yandexnavi',
+  'yandex-taxi': 'ru.yandex.taxi',
+  'dgis': 'ru.dublgis.dgismobile',
+  'waze': 'com.waze',
+  'google-maps': 'com.google.android.apps.maps',
+  'uber': 'com.ubercab',
+  'lyft': 'me.lyft.android',
+  'moovit': 'com.tranzmate',
+  'sygic': 'com.sygic.aura',
+  'gett': 'com.gettaxi.android',
+  'petalmaps': 'com.huawei.maps.app',
+};
+
+
 export const appKeys: MapId[] = [
   'apple-maps',
   'google-maps',
@@ -254,8 +271,8 @@ export const checkOptions = ({
   if (app && !(app in prefixes)) {
     throw new Error(
       'Option `app` should be undefined, null, or one of the following: "' +
-        Object.keys(prefixes).join('", "') +
-        '".',
+      Object.keys(prefixes).join('", "') +
+      '".',
     );
   }
   if (appsWhiteList && appsWhiteList.length) {
@@ -364,7 +381,7 @@ export const colorsPopup = {
   lightBlue: '#ECF2F8',
 };
 
-export const isAppInstalled = (
+const isAppInstalled = (
   app: string,
   prefixes: Record<string, string>,
 ): Promise<boolean> => {
@@ -373,8 +390,13 @@ export const isAppInstalled = (
       return resolve(false);
     }
 
+    const isAndroid = Capacitor.getPlatform() === 'android';
+    const packageName = isAndroid ? androidPackageNames[app as MapId] : undefined;
+
+    const urlToCheck = isAndroid && packageName ? packageName : prefixes[app];
+
     AppLauncher.canOpenUrl({
-      url: prefixes[app],
+      url: urlToCheck,
     })
       .then(result => {
         resolve(!!result.value);

@@ -1,6 +1,6 @@
 {
   "name": "capacitor-map-link",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Open the map app of the user's choice with a specific location.",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -58,10 +58,10 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@capacitor/android": "^6.0.0",
-    "@capacitor/core": "^6.0.0",
+    "@capacitor/android": "*",
+    "@capacitor/core": "*",
     "@capacitor/docgen": "^0.2.2",
-    "@capacitor/ios": "^6.0.0",
+    "@capacitor/ios": "*",
     "@ionic/eslint-config": "^0.4.0",
     "@ionic/prettier-config": "^1.0.1",
     "@ionic/swiftlint-config": "^1.1.2",
@@ -74,11 +74,11 @@
     "typescript": "~4.1.5"
   },
   "optionalDependencies": {
-    "@capacitor/action-sheet": "^6.0.1"
+    "@capacitor/action-sheet": "*"
   },
   "peerDependencies": {
-    "@capacitor/action-sheet": "^6.0.1",
-    "@capacitor/core": "^6.0.0"
+    "@capacitor/action-sheet": "*",
+    "@capacitor/core": "*"
   },
   "prettier": "@ionic/prettier-config",
   "swiftlint": "@ionic/swiftlint-config",
@@ -94,7 +94,7 @@
     }
   },
   "dependencies": {
-    "@capacitor/app-launcher": "^6.0.2",
-    "@capacitor/action-sheet": "^6.0.1"
+    "@capacitor/app-launcher": "*",
+    "@capacitor/action-sheet": "*"
   }
 }

@@ -92,6 +92,21 @@ Here is an example of how your `AndroidManifest.xml` should look with the URL sc
     package="com.example.app">
 
     <queries>
+
+      <package android:name="ru.yandex.yandexmaps" />
+        <package android:name="ru.yandex.yandexnavi" />
+        <package android:name="ru.yandex.taxi" />
+        <package android:name="ru.dublgis.dgismobile" />
+        <package android:name="com.waze" />
+        <package android:name="com.google.android.apps.maps" />
+        <package android:name="com.ubercab" />
+        <package android:name="me.lyft.android" />
+        <package android:name="com.tranzmate" />
+        <package android:name="com.sygic.aura" />
+        <package android:name="com.gettaxi.android" />
+        <package android:name="com.huawei.maps.app" />
+
+        
         <intent>
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="http" />
